@@ -7,6 +7,7 @@ import ChatNetwork.ChatNetwork.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -37,5 +38,7 @@ public class UserService {
         return userRepository.save(entity);
     }
 
-
+    public Optional<User> findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
 }
