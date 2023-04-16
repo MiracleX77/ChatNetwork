@@ -23,6 +23,6 @@ public class TokenFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request1 = (HttpServletRequest) request;
         String authorization = request1.getHeader("Authorization");
-        if(ObjectUtils)
+        if(ObjectUtilsadasdsa)
     }
 }
