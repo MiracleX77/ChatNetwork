@@ -1,6 +1,7 @@
 package ChatNetwork.ChatNetwork.config;
 
-import lombok.Builder;
+import ChatNetwork.ChatNetwork.config.token.TokenFilterConfiguerer;
+import ChatNetwork.ChatNetwork.service.TokenService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,9 +16,14 @@ import java.util.Collections;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+    private final TokenService tokenService;
     private final String[] PUBLIC ={
       "/user/register","/user/login"
     };
+
+    public SecurityConfig(TokenService tokenService) {
+        this.tokenService = tokenService;
+    }
 
     @Bean
     protected DefaultSecurityFilterChain configure(HttpSecurity http) throws  Exception{
@@ -41,7 +47,7 @@ public class SecurityConfig {
                 .and().authorizeRequests().requestMatchers(PUBLIC).anonymous()
                 .anyRequest().authenticated()
                 .and()
-//                .apply(new tokenFilterConfiguerer(tokenService)).and()
+                .apply(new TokenFilterConfiguerer(tokenService)).and()
                 .build();
     }
 }
