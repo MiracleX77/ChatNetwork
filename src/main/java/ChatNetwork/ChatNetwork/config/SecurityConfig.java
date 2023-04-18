@@ -44,7 +44,7 @@ public class SecurityConfig {
                     config.configurationSource(source);
                 }).csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authorizeRequests().requestMatchers(PUBLIC).anonymous()
+                .and().authorizeHttpRequests().requestMatchers(PUBLIC).anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .apply(new TokenFilterConfiguerer(tokenService)).and()
