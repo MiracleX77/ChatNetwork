@@ -2,8 +2,12 @@ package ChatNetwork.ChatNetwork.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -16,6 +20,9 @@ public class User extends BaseEntity {
     private String password;
     @Column(nullable = false,length = 120)
     private String name;
+
+    @ManyToMany(mappedBy = "users")
+    private Set<Room> rooms = new HashSet<>();
 
 
 }
