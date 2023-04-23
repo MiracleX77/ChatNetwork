@@ -11,7 +11,7 @@ public class SecurityUtill {
     private SecurityUtill(){
 
     }
-    public static Optional<String> getCurrentUserId(){
+    public static Optional<Long> getCurrentUserId(){
         SecurityContext context = SecurityContextHolder.getContext();
         if(context == null){
             return Optional.empty();
@@ -24,7 +24,7 @@ public class SecurityUtill {
         if(principal==null){
             return Optional.empty();
         }
-        String userId = (String) principal;
+        Long userId = (Long) principal;
         return Optional.of(userId);
 
     }

@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class MChatMessage {
 
-    private String from;
+    private Long from;
 
     private String message;
 
