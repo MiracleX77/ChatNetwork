@@ -34,10 +34,11 @@ public class TokenService {
     }
     public DecodedJWT verify(String token){
         try{
-            JWTVerifier verifier =JWT.require(algorithm())
+            JWTVerifier verifier = JWT.require(algorithm())
                     .withIssuer(issuer)
                     .build();
-            return  verifier.verify(token);
+            return verifier.verify(token);
+
         }
         catch (Exception e){
             return null;

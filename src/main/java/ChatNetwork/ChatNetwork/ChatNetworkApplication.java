@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 
-public class ChatNetworkApplication {
+public class 	ChatNetworkApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ChatNetworkApplication.class, args);
