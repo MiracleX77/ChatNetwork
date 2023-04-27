@@ -31,11 +31,14 @@ public class ChatBusiness {
         if(opt.isEmpty()){
             throw ChatException.accessDenied();
         }
-        final String  destination = "/topic/chat";
+        chatService.setMessageToRoom(opt.get(), request.getReceiver(), request.getMessage());
 
+
+        final String  destination = "/topic/chat";
         MChatMessage payload = new MChatMessage();
-        payload.setFrom(opt.get());
+        payload.setReceiver(request.getReceiver());
         payload.setMessage(request.getMessage());
+        System.out.println(payload.getMessage());
         template.convertAndSend(destination,payload);
     }
 
@@ -50,7 +53,7 @@ public class ChatBusiness {
         }
         final String  destination = "/topic/create-room";
         MChatRoomResponse payload = new MChatRoomResponse();
-        payload.setNameTalker(s);
+        payload.setReceiver(s);
         template.convertAndSend(destination,payload);
     }
 
@@ -63,10 +66,25 @@ public class ChatBusiness {
         List<MChatRoomResponse> roomList = response.getRooms();
         List<Room> rooms =  chatService.getRoomsOfUser(opt.get());
         for (Room room : rooms) {
-            roomList.add(roomMapper.toChatRoomResponse(room));
+            MChatRoomResponse mChatRoomResponse = new MChatRoomResponse();
+            mChatRoomResponse.setReceiver(room.getReceiver());
+            roomList.add(mChatRoomResponse);
         }
+
         response.setRooms(roomList);
+
         return response;
+
+    }
+    public MChatName getName() throws BaseException{
+        Optional<Long> opt = SecurityUtill.getCurrentUserId();
+        if(opt.isEmpty()){
+            throw ChatException.accessDenied();
+        }
+        String res = chatService.getName(opt.get());
+        MChatName mChatName = new MChatName();
+        mChatName.setName(res);
+        return mChatName;
 
     }
 }

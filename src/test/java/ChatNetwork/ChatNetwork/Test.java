@@ -84,7 +84,6 @@ public class Test {
         //check equals
         Assertions.assertNotNull(s);
 
-
     }
     @Order(5)
     @org.junit.jupiter.api.Test
@@ -95,6 +94,14 @@ public class Test {
         //check not null
         //check equals
         Assertions.assertNotNull(a);
+
+    }
+    @Order(6)
+    @org.junit.jupiter.api.Test
+    void testAddMessage() throws BaseException {
+        Optional<User>  user = userRepository.findByEmail(TestData1.email);
+        chatService.setMessageToRoom(user.get().getId(),TestData2.name,TestData4.message);
+        Assertions.assertNotNull(user.get().getRooms().get(0).getMessages());
 
     }
 
@@ -124,8 +131,6 @@ public class Test {
 //        Optional<User> optDelete = userService.findByEmail(TestData2.email);
 //        Assertions.assertTrue(optDelete.isEmpty());
 //
-//
-//
 //    }
 
 
@@ -146,5 +151,11 @@ public class Test {
         String password = "1";
         String name = "test3";
     }
+    interface TestData4 {
+        String message = "yoo";
+        String sender = "test1";
+        String receiver = "test2";
+    }
+
 
 }

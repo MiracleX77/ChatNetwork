@@ -5,5 +5,6 @@ import lombok.Data;
 
 @Data
 public class MChatRoomResponse {
-    private String nameTalker ;
+    private String receiver ;
+
 }

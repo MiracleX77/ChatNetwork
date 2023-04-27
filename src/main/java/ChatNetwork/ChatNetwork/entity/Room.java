@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,6 +19,12 @@ public class Room  {
     @GeneratedValue
     private Long idroom;
 
-    private Long talkerid;
-    private String talkername;
+    private Long receiverid;
+    private String receiver;
+
+    @OneToMany(targetEntity = Message.class,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "room_messages",referencedColumnName = "idroom")
+    private List<Message> messages;
+
+
 }

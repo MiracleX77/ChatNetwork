@@ -1,14 +1,18 @@
 package ChatNetwork.ChatNetwork.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Data
 @Entity
-@Table(name = "message")
+@Table(name= "message_tb")
+@Data
+@AllArgsConstructor
+
 public class Message {
     @Id
     @GeneratedValue
@@ -25,7 +29,8 @@ public class Message {
     @Column(nullable = false)
     private Date created;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name ="m_room_id",nullable = false)
-//    private Room room;
+    public Message(){
+        created = new Date();
+    }
+
 }

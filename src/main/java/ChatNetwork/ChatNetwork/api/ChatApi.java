@@ -3,10 +3,7 @@ package ChatNetwork.ChatNetwork.api;
 import ChatNetwork.ChatNetwork.bussiness.ChatBusiness;
 import ChatNetwork.ChatNetwork.entity.Room;
 import ChatNetwork.ChatNetwork.exception.BaseException;
-import ChatNetwork.ChatNetwork.model.MChatMessageRequest;
-import ChatNetwork.ChatNetwork.model.MChatRoomRequest;
-import ChatNetwork.ChatNetwork.model.MChatRoomResponse;
-import ChatNetwork.ChatNetwork.model.MChatRoomsResponse;
+import ChatNetwork.ChatNetwork.model.*;
 import ChatNetwork.ChatNetwork.repository.ChatRepository;
 import ChatNetwork.ChatNetwork.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -45,6 +42,13 @@ public class ChatApi {
         MChatRoomsResponse response = chatBusiness.getRooms();
         return  ResponseEntity.ok(response);
     }
+
+    @GetMapping("/get-name")
+    public ResponseEntity<MChatName> getNameOfUser() throws BaseException{
+        MChatName response = chatBusiness.getName();
+        return  ResponseEntity.ok(response);
+    }
+
 
 
 

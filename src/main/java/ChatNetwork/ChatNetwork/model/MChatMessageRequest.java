@@ -6,5 +6,7 @@ import lombok.Data;
 public class MChatMessageRequest {
     private String message;
 
+    private String receiver;
+
 
 }

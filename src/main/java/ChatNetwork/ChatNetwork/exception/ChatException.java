@@ -14,4 +14,11 @@ public class ChatException extends BaseException{
         return new ChatException("create.room.name.not.found");
     }
 
+    public static ChatException senderIdNotFound(){
+        return new ChatException("sender.id.not.found");
+    }
+    public static ChatException receiverIdNotFound(){
+        return new ChatException("receiver.id.not.found");
+    }
+
 }
