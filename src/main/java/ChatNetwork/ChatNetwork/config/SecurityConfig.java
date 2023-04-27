@@ -18,7 +18,7 @@ import java.util.Collections;
 public class SecurityConfig {
     private final TokenService tokenService;
     private final String[] PUBLIC ={
-      "/user/register","/user/login","/socket/**","/chat/**"
+      "/user/register","/user/login","/socket/**"
     };
 
     public SecurityConfig(TokenService tokenService) {

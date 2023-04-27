@@ -31,7 +31,6 @@ public class TokenFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request1 = (HttpServletRequest) request;
         String authorization = request1.getHeader("Authorization");
-        System.out.println(authorization);
         if(ObjectUtils.isEmpty(authorization)){
             chain.doFilter(request,response);
             return;
@@ -46,7 +45,7 @@ public class TokenFilter extends GenericFilterBean {
             chain.doFilter(request,response);
             return;
         }
-        String principal = decodedJWT.getClaim("principal").asString();
+        Long principal = decodedJWT.getClaim("principal").asLong();
         String role = decodedJWT.getClaim("role").asString();
 
         List<GrantedAuthority> authorities = new ArrayList<>();
@@ -56,7 +55,6 @@ public class TokenFilter extends GenericFilterBean {
 
         SecurityContext context = SecurityContextHolder.getContext();
         context.setAuthentication(authenticationToken);
-        System.out.println("pass_fitter");
         chain.doFilter(request,response);
 
     }

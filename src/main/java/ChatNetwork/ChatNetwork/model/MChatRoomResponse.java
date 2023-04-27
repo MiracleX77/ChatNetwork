@@ -5,5 +5,5 @@ import lombok.Data;
 
 @Data
 public class MChatRoomResponse {
-    private boolean status = false;
+    private String nameTalker ;
 }

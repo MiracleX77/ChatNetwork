@@ -9,6 +9,7 @@ import ChatNetwork.ChatNetwork.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class ChatService {
         this.chatRepository = chatRepository;
         this.userRepository = userRepository;
     }
-    public boolean createRoom(Long userIdRequest, String name) throws BaseException {
+    public String createRoom(Long userIdRequest, String name) throws BaseException {
         Optional<User> opt1 = userRepository.findById(userIdRequest);
         if(opt1.isEmpty()){
             throw ChatException.createRoomDenied();
@@ -43,11 +44,20 @@ public class ChatService {
         r2.setTalkername(user1.getName());
         r2.setTalkerid(user1.getId());
         user2.getRooms().add(r2);
-
         userRepository.save(user1);
         userRepository.save(user2);
-
-        return true;
+        return name;
     }
+    public List<Room> getRoomsOfUser(Long userId) throws BaseException{
+        Optional<User> opt = userRepository.findById(userId);
+        if(opt.isEmpty()){
+            throw ChatException.createRoomDenied();
+        }
+        User user = opt.get();
+        return user.getRooms();
+
+    }
+
+
 
 }

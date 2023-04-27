@@ -78,11 +78,11 @@ public class Test {
     @org.junit.jupiter.api.Test
     void testCreateRoom() throws BaseException {
         Optional<User>  user = userRepository.findByEmail(TestData1.email);
-        boolean s = chatService.createRoom(user.get().getId(),TestData2.name);
+        String s = chatService.createRoom(user.get().getId(),TestData2.name);
         Assertions.assertNotNull(user.get().getRooms());
         //check not null
         //check equals
-        Assertions.assertTrue(s);
+        Assertions.assertNotNull(s);
 
 
     }
@@ -91,10 +91,10 @@ public class Test {
     void testCreateRoom2() throws BaseException {
         Optional<User>  user = userRepository.findByEmail(TestData1.email);
         Assertions.assertTrue(user.isPresent());
-        boolean a = chatService.createRoom(user.get().getId(),TestData3.name);
+        String a = chatService.createRoom(user.get().getId(),TestData3.name);
         //check not null
         //check equals
-        Assertions.assertTrue(a);
+        Assertions.assertNotNull(a);
 
     }
 

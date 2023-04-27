@@ -6,6 +6,7 @@ import ChatNetwork.ChatNetwork.exception.BaseException;
 import ChatNetwork.ChatNetwork.model.MChatMessageRequest;
 import ChatNetwork.ChatNetwork.model.MChatRoomRequest;
 import ChatNetwork.ChatNetwork.model.MChatRoomResponse;
+import ChatNetwork.ChatNetwork.model.MChatRoomsResponse;
 import ChatNetwork.ChatNetwork.repository.ChatRepository;
 import ChatNetwork.ChatNetwork.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -35,9 +36,14 @@ public class ChatApi {
     }
 
     @PostMapping("/create-room")
-    public ResponseEntity<MChatRoomResponse> createRoom(@RequestBody MChatRoomRequest request) throws BaseException{
-        MChatRoomResponse status = chatBusiness.createRoom(request);
-        return ResponseEntity.ok(status);
+    public ResponseEntity<Void> createRoom(@RequestBody MChatRoomRequest request) throws BaseException{
+        chatBusiness.createRoom(request);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    @GetMapping("/get-rooms")
+    public ResponseEntity<MChatRoomsResponse> getRooms() throws BaseException{
+        MChatRoomsResponse response = chatBusiness.getRooms();
+        return  ResponseEntity.ok(response);
     }
 
 
