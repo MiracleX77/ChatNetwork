@@ -42,6 +42,7 @@ public class UserBusiness {
         response.setToken(tokenService.tokenize(user));
         return response;
     }
+
     public MRegisterResponse register(MRegisterRequest request) throws BaseException{
         User user = userService.create(request.getEmail(),request.getPassword(), request.getName());
         return userMapper.toRegisterResponse(user);
