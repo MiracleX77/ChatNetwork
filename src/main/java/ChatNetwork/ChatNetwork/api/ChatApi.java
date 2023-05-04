@@ -48,6 +48,12 @@ public class ChatApi {
         MChatName response = chatBusiness.getName();
         return  ResponseEntity.ok(response);
     }
+    @GetMapping("/get-messages-{receiver}")
+    public ResponseEntity<MChatMessages> getMessagesOfRoom(@PathVariable("receiver") String request) throws BaseException{
+        MChatMessages response = chatBusiness.getMessages(request);
+        return ResponseEntity.ok(response);
+    }
+
 
 
 

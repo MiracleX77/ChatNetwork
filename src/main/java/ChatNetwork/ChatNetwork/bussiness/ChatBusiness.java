@@ -1,5 +1,6 @@
 package ChatNetwork.ChatNetwork.bussiness;
 
+import ChatNetwork.ChatNetwork.entity.Message;
 import ChatNetwork.ChatNetwork.entity.Room;
 import ChatNetwork.ChatNetwork.exception.BaseException;
 import ChatNetwork.ChatNetwork.exception.ChatException;
@@ -86,5 +87,25 @@ public class ChatBusiness {
         mChatName.setName(res);
         return mChatName;
 
+    }
+    public MChatMessages getMessages(String receiver) throws ChatException {
+        Optional<Long> opt = SecurityUtill.getCurrentUserId();
+        if(opt.isEmpty()){
+            throw ChatException.accessDenied();
+        }
+        Room room = chatService.getRoomOfUserAndReceiver(opt.get(),receiver);
+        MChatMessages messages = new MChatMessages();
+        List<MChatMessage> mChatMessages = messages.getMessages();
+
+        List<Message> messageList = room.getMessages();
+        for (Message mes : messageList){
+            MChatMessage message = new MChatMessage();
+            message.setReceiver(mes.getReceiver());
+            message.setMessage(mes.getMessage());
+            message.setCreated(mes.getCreated());
+            mChatMessages.add(message);
+        }
+        messages.setMessages(mChatMessages);
+        return messages;
     }
 }
