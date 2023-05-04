@@ -80,10 +80,15 @@ public class ChatService {
         for(Room room:user1.getRooms()){
             if(Objects.equals(room.getReceiver(), receiverName)){
                 room.getMessages().add(message1);
-                Optional<Room> room2 = chatRepository.findById(room.getIdroom()+1);
                 chatRepository.save(room);
-                room2.get().getMessages().add(message1);
-                chatRepository.save(room2.get());
+                break;
+            }
+
+        }
+        for(Room room1:user2.getRooms()){
+            if(Objects.equals(room1.getReceiver(), user1.getName())){
+                room1.getMessages().add(message1);
+                chatRepository.save(room1);
                 break;
             }
         }
@@ -94,6 +99,25 @@ public class ChatService {
             throw ChatException.senderIdNotFound();
         }
         return opt.get().getName();
+    }
+
+    public Room getRoomOfUserAndReceiver(Long userId,String receiverName) throws ChatException {
+        Optional<User> opt1 = userRepository.findById(userId);
+        if(opt1.isEmpty()){
+            throw ChatException.senderIdNotFound();
+        }
+        Optional<User> opt2 = userRepository.findByName(receiverName);
+        if(opt2.isEmpty()){
+            throw ChatException.receiverIdNotFound();
+        }
+        User user1 = opt1.get();
+        User user2 = opt2.get();
+        for(Room room:user1.getRooms()){
+            if(Objects.equals(room.getReceiver(), receiverName)){
+                return room;
+            }
+        }
+        throw ChatException.accessDenied();
     }
 
 

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting</title>
+</head>
+
+<body>
+
+    <div class="title">
+        <h1>
+            Setting
+        </h1>
+    </div>
+    <div class="change-password">
+        <h1 class="change-password-label">Change Password</h1>
+        <input class="input" type="text" />
+    </div>
+    <div class="submit">
+        <button class="submit">Submit</button>
+    </div>
+
+    <div class="message-remainder">
+        <div class="off-on">
+            <h1 class="off-on-label">Message Remainder</h1>
+            <div class="col">
+                <form>
+                    <div class="rol">
+                        <label class="off-label">Off</label>
+                        <input class="input" name="off-on" type="radio" />
+                    </div>
+                    <div class="rol">
+                        <label class="on-label">On</label>
+                        <input class="input" name="off-on" type="radio" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-bar">
+        <div class="back">
+            <img src="https://media.discordapp.net/attachments/850032860349464616/1102541111320399903/image.png?width=280&height=280"
+                alt="">
+        </div>
+        <div class="home">
+            <img src="https://media.discordapp.net/attachments/850032860349464616/1102541312902844526/image.png?width=280&height=226"
+                alt="">
+        </div>
+        <div class="setting">
+            <img src="https://cdn.discordapp.com/attachments/850032860349464616/1102541488153432164/image.png" alt="">
+        </div>
+    </div>
+
+</body>
+
+<style>
+    body {
+        background-color: #1D1C40;
+    }
+
+    .title {
+        color: #FFBD59;
+        padding-left: 20px;
+        padding-top: 20px;
+    }
+
+    .change-password {
+        color: #05FF00;
+        padding-left: 20px;
+        padding-top: 20px;
+    }
+
+    .change-password input {
+        width: 300px;
+        height: 40px;
+        background-color: #D9D9D9;
+        border-radius: 20px;
+    }
+
+
+
+    .submit button {
+        float: right;
+        margin-top: 10px;
+        margin-right: 20px;
+
+        background-color: #FFBD59;
+        border-radius: 20px;
+
+        width: 100px;
+        height: 30px;
+
+        border: none;
+    }
+
+    .message-remainder {
+        color: #05FF00;
+        padding-left: 20px;
+        padding-top: 40px;
+
+    }
+
+    .rol {
+        font-size: 30px;
+        margin-left: 30px;
+        margin-bottom: 30px;
+
+        color: #D9D9D9;
+    }
+
+    .rol input {
+        float: right;
+        margin-right: 40px;
+
+        width: 20px;
+        height: 20px;
+    }
+
+    .bottom-bar {
+        position: fixed;
+        bottom: 20px;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: space-around;
+        left: 0px;
+    }
+
+    img {
+        width: 70px;
+        height: 70px;
+        aspect-ratio: 1/1;
+    }
+</style>
+
+</html>

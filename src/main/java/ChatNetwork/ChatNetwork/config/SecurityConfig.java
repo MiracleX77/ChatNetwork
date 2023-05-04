@@ -12,7 +12,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Collections;
-
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
@@ -20,11 +19,9 @@ public class SecurityConfig {
     private final String[] PUBLIC ={
       "/user/register","/user/login","/socket/**"
     };
-
     public SecurityConfig(TokenService tokenService) {
         this.tokenService = tokenService;
     }
-
     @Bean
     protected DefaultSecurityFilterChain configure(HttpSecurity http) throws  Exception{
         return http.cors(config -> {
@@ -37,10 +34,8 @@ public class SecurityConfig {
                     cors.addAllowedMethod("PUT");
                     cors.addAllowedMethod("DELETE");
                     cors.addAllowedMethod("OPTIONS");
-
                     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
                     source.registerCorsConfiguration("/**", cors);
-
                     config.configurationSource(source);
                 }).csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
